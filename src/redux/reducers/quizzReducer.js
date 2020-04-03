@@ -1,7 +1,7 @@
 const currentTabMap = {
-  LESSONS: 'lessons',
-  CARDS: 'cards'
-};
+  LESSONS: 'LESSONS',
+  CARDS: 'CARDS'
+}
 
 const initialQuizzState = {
   currentTab: currentTabMap.LESSONS
@@ -9,6 +9,13 @@ const initialQuizzState = {
 
 const quizzReducer = (state = initialQuizzState, action) => {
   switch (action.type) {
+    case 'SWITCH_TO_TAB':
+      if (currentTabMap[action.tabName]) {
+        return { ...state, currentTab: currentTabMap[action.tabName] }
+      } else {
+        // Unknown tab name
+        return state
+      }
     case 'TODO_ADD_TO_LIST':
       const newTodo = {
         value: action.value,
