@@ -1,18 +1,21 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import './quizzApp.css'
 
 class QuizzApp extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-
   render() {
+    const { currentTab } = this.props
+
     return (
       <span id="quizz-app-container">
-        <span className="quizz-app">Quizz app</span>
+        <span className="quizz-app">{currentTab}</span>
       </span>
     )
   }
 }
 
-export default QuizzApp
+const mapStateToProps = state => {
+  return { currentTab: state.quizz.currentTab }
+}
+
+export default connect(mapStateToProps)(QuizzApp)
