@@ -1,7 +1,39 @@
 #quizz-app-container {
   width: 100vw;
-  max-width: 400px;
+  max-width: 800px;
   background-color: white;
   border-radius: 15px;
-  box-shadow: 0 0 25px 0 rgba(0,0,0,.04);
+  box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.04);
+}
+
+.quizz-app-header {
+  padding: 30px 50px;
+  border-bottom: 1px solid #e8e8e8;
+  width: 100%;
+}
+
+.quizz-app-header-item {
+  margin-right: 60px;
+  padding-bottom: 30px;
+  position: relative;
+  text-transform: uppercase;
+}
+
+.quizz-app-header-item-active {
+  color: #32cdff;
+  font-weight: 600;
+}
+
+.quizz-app-header-item-active:after {
+  content: '';
+  display: block;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 4px;
+  background-color: #32cdff;
+}
+
+.quizz-app-body {
+  padding: 30px 50px;
 }
