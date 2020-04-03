@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import './quizzApp.css'
+import Lessons from '../lessons/Lessons'
 
 const currentTabMap = {
   LESSONS: 'LESSONS',
@@ -8,8 +9,10 @@ const currentTabMap = {
 }
 
 class QuizzApp extends React.Component {
+  
   render() {
     const { currentTab, switchToTab } = this.props
+    let contentComponent = currentTab === currentTabMap.LESSONS ? <Lessons /> : ''
 
     return (
       <div id="quizz-app-container">
@@ -17,7 +20,9 @@ class QuizzApp extends React.Component {
           <span onClick={switchToTab.bind(this, currentTabMap.LESSONS)} className={`quizz-app-header-item ${currentTab === currentTabMap.LESSONS ? 'quizz-app-header-item-active' : ''}`}>Lessons</span>
           <span onClick={switchToTab.bind(this, currentTabMap.CARDS)} className={`quizz-app-header-item ${currentTab === currentTabMap.CARDS ? 'quizz-app-header-item-active' : ''}`}>Cards (@TODO: cards number)</span>
         </div>
-        <div className="quizz-app-body">Lessons or cards will go here</div>
+        <div className="quizz-app-body">
+          {contentComponent}
+        </div>
       </div>
     )
   }
