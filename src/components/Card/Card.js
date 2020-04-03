@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { flipCard, setVisibility } from '../../redux/actions/cardActions';
+import './Card.css';
 
 const Card = ( {card, flipCard, setVisibility} ) => {
   const [isSwitched, setIsSwitched] = useState(false);
@@ -23,16 +24,18 @@ const Card = ( {card, flipCard, setVisibility} ) => {
   };
 
   return (
-    <>
-      <div onClick={switchFace}>
-        { !isSwitched ?
-          <p>{question}</p>
-          :
-          <p>{answer}</p>
-        }
+    <div>
+      <div className={`card ${isVisible ? '' : 'visible'}`}>
+        <div className={'cardContent'} onClick={switchFace}>
+          { !isSwitched ?
+            <>{question}</>
+            :
+            <>{answer}</>
+          }
+        </div>
+        <button onClick={() => setVisibility(id)}>Change visibility</button>
       </div>
-      <button onClick={() => setVisibility(id)}>Change visibility</button>
-    </>
+    </div>
   )
 };
 

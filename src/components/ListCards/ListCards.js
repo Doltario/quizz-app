@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Card from '../Card/Card';
+import './ListCards.css';
 
 const ListCards = ({ cards })  => {
   console.log(cards);
@@ -8,9 +9,9 @@ const ListCards = ({ cards })  => {
     return <Card card={card} key={card.id}/>
   });
   return (
-    <>
+    <div className={'listCards'}>
       { cardsComponent }
-    </>
+    </div>
   )
 };
 
