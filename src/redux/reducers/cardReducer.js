@@ -1,18 +1,18 @@
 import cardData  from '../../lib/cardData';
 
-const cardReducer = (state = cardData, action) => {
+const cardReducer = (state = {list: cardData}, action) => {
   switch (action.type) {
     case 'FLIP_CARD':
       return state.map((card, index) => {
         if (index === action.id) {
-          return {...card, isFlippedOnce: action.isFlippedOnce}
+          return {...card, isFlippedOnce: true}
         }
         return card
       });
     case 'SET_VISIBILITY':
       return state.map((card, index) => {
         if (index === action.id) {
-          return {...card, visible: action.visible}
+          return {...card, visible: !card.isVisible}
         }
         return card
       });

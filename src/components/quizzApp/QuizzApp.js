@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import './quizzApp.css'
 import Lessons from '../lessons/Lessons'
+import ListCards from '../ListCards/ListCards';
 
 const currentTabMap = {
   LESSONS: 'LESSONS',
@@ -9,7 +10,7 @@ const currentTabMap = {
 }
 
 class QuizzApp extends React.Component {
-  
+
   render() {
     const { currentTab, switchToTab } = this.props
     let contentComponent = currentTab === currentTabMap.LESSONS ? <Lessons /> : ''

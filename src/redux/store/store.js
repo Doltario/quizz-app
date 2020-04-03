@@ -5,7 +5,7 @@ import cardReducer from '../reducers/cardReducer'
 const rootReducer = combineReducers(
   {
     quizz: quizzReducer,
-    card: cardReducer,
+    cards: cardReducer,
   });
 const store = createStore(rootReducer);
 
