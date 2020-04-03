@@ -15,7 +15,7 @@ const ListCards = ({ cards })  => {
 };
 
 const mapStateToProps = state => {
-  return { cards:  state.cards.list}
+  return { cards:  state.cards}
 };
 
 export default connect(mapStateToProps)(ListCards);

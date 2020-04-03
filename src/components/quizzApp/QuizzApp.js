@@ -12,8 +12,8 @@ const currentTabMap = {
 class QuizzApp extends React.Component {
 
   render() {
-    const { currentTab, switchToTab } = this.props
-    let contentComponent = currentTab === currentTabMap.LESSONS ? <Lessons /> : ''
+    const { currentTab, switchToTab } = this.props;
+    let contentComponent = currentTab === currentTabMap.LESSONS ? <Lessons /> : <ListCards />;
 
     return (
       <div id="quizz-app-container">

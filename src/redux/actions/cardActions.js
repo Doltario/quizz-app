@@ -7,11 +7,11 @@ const flipCard = (id) => {
   return {type: ACTIONS.FLIP_CARD, id};
 };
 
-const setVisbility = (id) => {
+const setVisibility = (id) => {
   return {type: ACTIONS.SET_VISIBILITY, id};
 };
 
 export {
   flipCard,
-  setVisbility,
+  setVisibility,
 }
