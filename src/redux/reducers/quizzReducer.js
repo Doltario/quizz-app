@@ -1,11 +1,11 @@
 const currentTabMap = {
   LESSONS: 'lessons',
   CARDS: 'cards'
-}
+};
 
 const initialQuizzState = {
   currentTab: currentTabMap.LESSONS
-}
+};
 
 const quizzReducer = (state = initialQuizzState, action) => {
   switch (action.type) {
@@ -13,11 +13,11 @@ const quizzReducer = (state = initialQuizzState, action) => {
       const newTodo = {
         value: action.value,
         strikethrough: false
-      }
-      return { ...state, list: [...state.list, newTodo] }
+      };
+      return { ...state, list: [...state.list, newTodo] };
     default:
       return state
   }
-}
+};
 
 export default quizzReducer
