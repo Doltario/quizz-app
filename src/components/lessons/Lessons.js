@@ -1,23 +1,39 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { getPopulatedLessons } from '../../redux/actions/lessonActions'
 import './lessons.css'
 
 class Lessons extends React.Component {
+  componentWillMount() {
+    this.props.getPopulatedLessons()
+  }
+
   render() {
-    return (
-      <div id="lessons-container">
-        Lessons will be here
-      </div>
-    )
+    const { lessons } = this.props
+
+    let lessonsList = lessons.reduce((lessonsList, lesson, index) => {
+    lessonsList.push(<div className="lessons-item">{index + 1}</div>)
+      return lessonsList
+    }, [])
+
+    return <div id="lessons-container">{lessonsList}</div>
   }
 }
 
 const mapStateToProps = state => {
-  return {}
+  return {
+    lessons: state.lessons.list
+  }
 }
 
-const mapDispatchToProps = dispatch => ({
-  switchToTab: () => {}
-})
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators(
+    {
+      getPopulatedLessons: getPopulatedLessons
+    },
+    dispatch
+  )
+}
 
-export default Lessons
+export default connect(mapStateToProps, mapDispatchToProps)(Lessons)
