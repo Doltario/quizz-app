@@ -17,12 +17,14 @@ class QuizzApp extends React.Component {
 
     return (
       <div id="quizz-app-container">
-        <div className="quizz-app-header">
-          <span onClick={switchToTab.bind(this, currentTabMap.LESSONS)} className={`quizz-app-header-item ${currentTab === currentTabMap.LESSONS ? 'quizz-app-header-item-active' : ''}`}>Lessons</span>
-          <span onClick={switchToTab.bind(this, currentTabMap.CARDS)} className={`quizz-app-header-item ${currentTab === currentTabMap.CARDS ? 'quizz-app-header-item-active' : ''}`}>Cards (@TODO: cards number)</span>
-        </div>
-        <div className="quizz-app-body">
-          {contentComponent}
+        <div className="quizz-app-content">
+          <div className="quizz-app-header">
+            <span onClick={switchToTab.bind(this, currentTabMap.LESSONS)} className={`quizz-app-header-item ${currentTab === currentTabMap.LESSONS ? 'quizz-app-header-item-active' : ''}`}>Lessons</span>
+            <span onClick={switchToTab.bind(this, currentTabMap.CARDS)} className={`quizz-app-header-item ${currentTab === currentTabMap.CARDS ? 'quizz-app-header-item-active' : ''}`}>Cards (@TODO: cards number)</span>
+          </div>
+          <div className="quizz-app-body">
+            {contentComponent}
+          </div>
         </div>
       </div>
     )
