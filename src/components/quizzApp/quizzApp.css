@@ -25,6 +25,7 @@
   padding-bottom: 30px;
   position: relative;
   text-transform: uppercase;
+  cursor: pointer;
 }
 
 .quizz-app-header-item-active {

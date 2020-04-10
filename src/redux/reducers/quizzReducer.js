@@ -19,6 +19,8 @@ const quizzReducer = (state = initialQuizzState, action) => {
       }
     case 'SET_CURRENT_QUIZZ':
       return { ...state, currentQuizz: action.lessonId }
+    case 'RESET_CURRENT_QUIZZ':
+      return { ...state, currentQuizz: null }
     default:
       return state
   }
