@@ -3,6 +3,7 @@ import cardData  from '../../lib/cardData';
 const initialLessonsReducer = {
   list: [
     {
+      id: 0,
       progress: 0,
       cards: [0, 1, 2, 3, 4]
     }
