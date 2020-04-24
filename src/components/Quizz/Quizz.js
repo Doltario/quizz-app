@@ -12,18 +12,21 @@ class QuizzApp extends React.Component {
 
     // felix@TODO: add quit prevention before resetCurrentQuizz
 
+    const closeQuizz = () => {
+      const input = window.confirm('Voulez vous vraiment quitter le quizz ?')
+      if (input === true) resetCurrentQuizz()
+    }
+
     return (
       <div id="quizz-container">
-        <div className="quizz-overlay" onClick={resetCurrentQuizz}></div>
+        <div className="quizz-overlay" onClick={closeQuizz}></div>
         <div className="quizz-content">
           <div className="quizz-header">
             <div className="quizz-header-item">
-              <span onClick={resetCurrentQuizz}>X</span>
+              <span onClick={closeQuizz}>X</span>
             </div>
           </div>
-          <div className="quizz-body">
-            Content
-          </div>
+          <div className="quizz-body">Content</div>
         </div>
       </div>
     )
