@@ -1,20 +1,33 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { resetCurrentQuizz } from '../../redux/actions/quizzActions'
+import { resetCurrentQuizz, incrementCurrentStep } from '../../redux/actions/quizzActions'
+import Review from '../Review/Review'
+import Question from '../Question/Question'
 import './quizz.css'
 
-class QuizzApp extends React.Component {
+class Quizz extends React.Component {
+
   render() {
     const { currentQuizz, resetCurrentQuizz } = this.props
 
-    if (!currentQuizz) return null
-
-    // felix@TODO: add quit prevention before resetCurrentQuizz
-
+    if (!currentQuizz.lesson) return null
+    
     const closeQuizz = () => {
+      // felix@TODO: Visually improve that
       const input = window.confirm('Voulez vous vraiment quitter le quizz ?')
       if (input === true) resetCurrentQuizz()
+    }
+
+    const next = () => {
+      this.props.incrementCurrentStep()
+    }
+
+    let content = null
+    if (currentQuizz.steps[currentQuizz.currentStep].isReview === true) {
+      content = <Review next={next}></Review>
+    } else {
+      content = <Question next={next}></Question>
     }
 
     return (
@@ -26,7 +39,7 @@ class QuizzApp extends React.Component {
               <span onClick={closeQuizz}>X</span>
             </div>
           </div>
-          <div className="quizz-body">Content</div>
+          <div className="quizz-body">{content}</div>
         </div>
       </div>
     )
@@ -34,11 +47,8 @@ class QuizzApp extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  // Here, currentQuizz equals a lesson object
   return {
-    currentQuizz: state.lessons.list.filter((lesson) => {
-      return lesson.id === state.quizz.currentQuizz
-    })[0],
+    currentQuizz: state.quizz.currentQuizz,
   }
 }
 
@@ -46,9 +56,10 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
     {
       resetCurrentQuizz,
+      incrementCurrentStep,
     },
     dispatch
   )
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(QuizzApp)
+export default connect(mapStateToProps, mapDispatchToProps)(Quizz)
