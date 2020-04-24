@@ -1,11 +1,12 @@
 const currentTabMap = {
   LESSONS: 'LESSONS',
-  CARDS: 'CARDS'
+  CARDS: 'CARDS',
 }
 
 const initialQuizzState = {
-  currentTab: currentTabMap.LESSONS
-};
+  currentTab: currentTabMap.LESSONS,
+  currentQuizz: null,
+}
 
 const quizzReducer = (state = initialQuizzState, action) => {
   switch (action.type) {
@@ -16,15 +17,13 @@ const quizzReducer = (state = initialQuizzState, action) => {
         // Unknown tab name
         return state
       }
-    case 'TODO_ADD_TO_LIST':
-      const newTodo = {
-        value: action.value,
-        strikethrough: false
-      };
-      return { ...state, list: [...state.list, newTodo] };
+    case 'SET_CURRENT_QUIZZ':
+      return { ...state, currentQuizz: action.lessonId }
+    case 'RESET_CURRENT_QUIZZ':
+      return { ...state, currentQuizz: null }
     default:
       return state
   }
-};
+}
 
 export default quizzReducer
