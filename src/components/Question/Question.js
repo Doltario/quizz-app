@@ -2,17 +2,20 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import './question.css'
+import Card from '../Card/Card';
 
 class Question extends React.Component {
   render() {
-    const { currentQuizz, next } = this.props
+    const { currentQuizz, next, cards } = this.props
 
     const step = currentQuizz.steps[currentQuizz.currentStep]
+    const currentCard = cards.filter( card => card.id === step.id)[0];
 
     return (
       <div id="question-container">
-        <div>Question</div>
-        <div onClick={next}>NEXT()</div>
+        <div className={'title'}>Question</div>
+        <Card card={currentCard} />
+        {currentCard.isFlippedOnce && <div className={'continue'} onClick={next}>Continue</div>}
       </div>
     )
   }
@@ -21,6 +24,7 @@ class Question extends React.Component {
 const mapStateToProps = (state) => {
   return {
     currentQuizz: state.quizz.currentQuizz,
+    cards: state.cards,
   }
 }
 
