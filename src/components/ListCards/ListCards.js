@@ -4,7 +4,6 @@ import Card from '../Card/Card';
 import './ListCards.css';
 
 const ListCards = ({ cards })  => {
-  console.log(cards);
   const cardsComponent = cards.map( (card, index) => {
     return <Card card={card} key={card.id}/>
   });

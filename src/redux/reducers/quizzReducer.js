@@ -1,3 +1,5 @@
+import { computeSteps } from '../../utils/stepsUtil'
+
 const currentTabMap = {
   LESSONS: 'LESSONS',
   CARDS: 'CARDS',
@@ -5,7 +7,11 @@ const currentTabMap = {
 
 const initialQuizzState = {
   currentTab: currentTabMap.LESSONS,
-  currentQuizz: null,
+  currentQuizz: {
+    lesson: null,
+    steps: [],
+    currentStep: 0,
+  },
 }
 
 const quizzReducer = (state = initialQuizzState, action) => {
@@ -17,10 +23,13 @@ const quizzReducer = (state = initialQuizzState, action) => {
         // Unknown tab name
         return state
       }
-    case 'SET_CURRENT_QUIZZ':
-      return { ...state, currentQuizz: action.lessonId }
+    case 'SET_CURRENT_QUIZZ_LESSON':
+      return { ...state, currentQuizz: { ...state.currentQuizz, lesson: action.lesson, steps: computeSteps(action.lesson) } }
+    case 'INCREMENT_CURRENT_STEP':
+      
+      return { ...state, currentQuizz: { ...state.currentQuizz, currentStep: state.currentQuizz.currentStep + 1 } }
     case 'RESET_CURRENT_QUIZZ':
-      return { ...state, currentQuizz: null }
+      return { ...state, currentQuizz: { lesson: null, steps: [] } }
     default:
       return state
   }
