@@ -3,7 +3,7 @@ const ACTIONS = {
 };
 
 const getPopulatedLessons = (isFlippedOnce, id) => {
-  return {type: ACTIONS.GET_POPULATED_LESSONS, isFlippedOnce: !isFlippedOnce, id};
+  return {type: ACTIONS.GET_POPULATED_LESSONS, isFlippedOnce: false, id: 2};
 };
 
 export {

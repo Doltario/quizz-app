@@ -1,11 +1,11 @@
-import cardData  from '../../lib/cardData';
+import cardData from '../../lib/cardData'
 
 const initialLessonsReducer = {
   list: [
     {
       id: 0,
       progress: 0,
-      cards: [0, 1, 2, 3, 4]
+      cards: [5, 1, 2, 3, 4]
     }
   ]
 }
@@ -39,6 +39,6 @@ const lessonsReducer = (state = initialLessonsReducer, action) => {
     default:
       return state
   }
-};
+}
 
-export default lessonsReducer;
+export default lessonsReducer

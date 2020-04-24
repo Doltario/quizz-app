@@ -40,14 +40,11 @@ const mapStateToProps = state => {
 
 
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators(
-    {
+  return {
       switchToTab: tabName => {
         dispatch({ type: 'SWITCH_TO_TAB', tabName })
       }
-    },
-    dispatch
-  )
+    }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(QuizzApp)
