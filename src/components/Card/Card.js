@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { flipCard, setVisibility } from '../../redux/actions/cardActions';
 import './Card.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 
 const Card = ( {card, flipCard, setVisibility} ) => {
   const [isSwitched, setIsSwitched] = useState(false);
@@ -26,14 +28,21 @@ const Card = ( {card, flipCard, setVisibility} ) => {
   return (
     <div>
       <div className={`card ${isVisible ? '' : 'visible'}`}>
-        <div className={'cardContent'} onClick={switchFace}>
-          { !isSwitched ?
-            <>{question}</>
-            :
-            <>{answer}</>
-          }
+        <div className={`cardInner ${isSwitched ? 'rotate' : ''}`} onClick={switchFace}>
+          <div className={`cardContentFront`}>
+            <p className={'text'}>{question}</p>
+          </div>
+          <div className={`cardContentBack`}>
+            <p className={'text'}>{answer}</p>
+          </div>
         </div>
-        <button onClick={() => setVisibility(id)}>Change visibility</button>
+      </div>
+      <div className={'option'}>
+        {isVisible ?
+          <FontAwesomeIcon onClick={() => setVisibility(id)} icon={faEye} />
+          :
+          <FontAwesomeIcon onClick={() => setVisibility(id)} icon={faEyeSlash} />
+        }
       </div>
     </div>
   )

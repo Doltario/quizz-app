@@ -8,6 +8,7 @@ function App() {
       <header className="App-header">
         <QuizzApp />
       </header>
+      <script src="https://kit.fontawesome.com/ee8af90b1b.js" crossOrigin="anonymous"></script>
     </div>
   )
 }
