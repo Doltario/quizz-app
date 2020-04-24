@@ -29,7 +29,7 @@ const quizzReducer = (state = initialQuizzState, action) => {
       
       return { ...state, currentQuizz: { ...state.currentQuizz, currentStep: state.currentQuizz.currentStep + 1 } }
     case 'RESET_CURRENT_QUIZZ':
-      return { ...state, currentQuizz: { lesson: null, steps: [] } }
+      return { ...state, currentQuizz: { lesson: null, steps: [], currentStep: 0 } }
     default:
       return state
   }
