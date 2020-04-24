@@ -14,7 +14,7 @@ class Lessons extends React.Component {
     const { lessons, setCurrentQuizzLesson } = this.props
 
     let lessonsList = lessons.reduce((lessonsList, lesson, index) => {      
-      lessonsList.push(<div className="lessons-item" key={index} onClick={setCurrentQuizzLesson.bind(this, lesson)}>{index + 1}</div>)
+      lessonsList.push(<div className={`lessons-item ${lesson.progress === 1 ? 'done': ''}`} key={index} onClick={setCurrentQuizzLesson.bind(this, lesson)}>{index + 1}</div>)
       return lessonsList
     }, [])
 

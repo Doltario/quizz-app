@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
 import './quizzApp.css'
 import Lessons from '../lessons/Lessons'
 import ListCards from '../ListCards/ListCards';
@@ -14,7 +13,7 @@ const currentTabMap = {
 class QuizzApp extends React.Component {
 
   render() {
-    const { currentTab, switchToTab } = this.props;
+    const { currentTab, switchToTab, cards } = this.props;
     let contentComponent = currentTab === currentTabMap.LESSONS ? <Lessons /> : <ListCards />;
 
     return (
@@ -22,7 +21,7 @@ class QuizzApp extends React.Component {
         <div className="quizz-app-content">
           <div className="quizz-app-header">
             <span onClick={switchToTab.bind(this, currentTabMap.LESSONS)} className={`quizz-app-header-item ${currentTab === currentTabMap.LESSONS ? 'quizz-app-header-item-active' : ''}`}>Lessons</span>
-            <span onClick={switchToTab.bind(this, currentTabMap.CARDS)} className={`quizz-app-header-item ${currentTab === currentTabMap.CARDS ? 'quizz-app-header-item-active' : ''}`}>Cards (@TODO: cards number)</span>
+            <span onClick={switchToTab.bind(this, currentTabMap.CARDS)} className={`quizz-app-header-item ${currentTab === currentTabMap.CARDS ? 'quizz-app-header-item-active' : ''}`}>Cards ({cards.length})</span>
           </div>
           <div className="quizz-app-body">
             {contentComponent}
@@ -35,19 +34,19 @@ class QuizzApp extends React.Component {
 }
 
 const mapStateToProps = state => {
-  return { currentTab: state.quizz.currentTab }
+  return { 
+    currentTab: state.quizz.currentTab,
+    cards: state.cards
+   }
 }
 
 
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators(
-    {
+  return {
       switchToTab: tabName => {
         dispatch({ type: 'SWITCH_TO_TAB', tabName })
       }
-    },
-    dispatch
-  )
+    }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(QuizzApp)

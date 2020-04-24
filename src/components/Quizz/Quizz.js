@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { resetCurrentQuizz, incrementCurrentStep } from '../../redux/actions/quizzActions'
+import { endLesson } from '../../redux/actions/lessonActions'
 import Review from '../Review/Review'
 import Question from '../Question/Question'
 import './quizz.css'
@@ -9,7 +10,7 @@ import './quizz.css'
 class Quizz extends React.Component {
 
   render() {
-    const { currentQuizz, resetCurrentQuizz } = this.props
+    const { currentQuizz, resetCurrentQuizz, endLesson } = this.props
 
     if (!currentQuizz.lesson) return null
     
@@ -20,7 +21,13 @@ class Quizz extends React.Component {
     }
 
     const next = () => {
-      this.props.incrementCurrentStep()
+      if (currentQuizz.steps[currentQuizz.currentStep + 1]) {
+        this.props.incrementCurrentStep()
+      } else {
+        endLesson(currentQuizz.lesson.id);
+        resetCurrentQuizz();
+      }
+      
     }
 
     let content = null
@@ -47,6 +54,8 @@ class Quizz extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+  // console.log(state);
+  
   return {
     currentQuizz: state.quizz.currentQuizz,
   }
@@ -57,6 +66,7 @@ const mapDispatchToProps = (dispatch) => {
     {
       resetCurrentQuizz,
       incrementCurrentStep,
+      endLesson
     },
     dispatch
   )
